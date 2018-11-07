@@ -24,16 +24,25 @@ export default class App extends Component{
       }
     })
   }
+  handleDeleteButton =(i)=>{
+    let newNotes = this.state.notes
+    newNotes.splice(i,1); 
+    this.setState({
+      notes: newNotes
+    })
+
+  }
   render() {
     const outputNote = this.state.notes.map((item, i)=>(
       <View key={i}> 
-        <Text>{item} </Text>
+        <Text>{item}</Text>
+        <Button title ="delete" onPress = {()=>this.handleDeleteButton(i)}/>
       </View>
     )
   )
     return (
       <View style={styles.container}>
-        <View>
+        <View >
             <TextInput 
                 placeholder = '> note'
                 value = {this.state.userInput}
@@ -60,5 +69,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     paddingTop: 40,
   },
+ 
  
 });
