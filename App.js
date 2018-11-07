@@ -12,6 +12,19 @@ export default class App extends Component{
       notes: []
     }
   }
+
+  handleAddNote = ()=>{
+    if(this.state.userInput === ''){
+      return;
+    }
+    this.setState((prevState) =>{
+      return{
+        notes: prevState.notes.concat(prevState.userInput),
+        userInput: '',
+      }
+
+    })
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -22,6 +35,10 @@ export default class App extends Component{
                 onChangeText={(userInput)=>{
                   this.setState({userInput})
                 }}
+            />
+            <Button 
+                title = 'Add'
+                onPress = {this.handleAddNote}
             />
 
         </View>
