@@ -1,6 +1,6 @@
 #  A simple React-Native TodoList App 
   This is a tutorial guide for React-Native beginner
-##Fork and clone
+`###Fork and clone
   npm install 
   react-native run-ios 
       or
