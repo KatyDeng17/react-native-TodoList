@@ -22,10 +22,15 @@ export default class App extends Component{
         notes: prevState.notes.concat(prevState.userInput),
         userInput: '',
       }
-
     })
   }
   render() {
+    const outputNote = this.state.notes.map((item, i)=>(
+      <View key={i}> 
+        <Text>{item} </Text>
+      </View>
+    )
+  )
     return (
       <View style={styles.container}>
         <View>
@@ -40,9 +45,8 @@ export default class App extends Component{
                 title = 'Add'
                 onPress = {this.handleAddNote}
             />
-
         </View>
-       
+       {outputNote}
       </View>
     );
   }
