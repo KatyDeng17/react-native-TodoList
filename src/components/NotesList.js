@@ -1,30 +1,33 @@
 import React from 'react'
-import {View, StyleSheet} from 'react-native'
+import {View, StyleSheet, FlatList} from 'react-native'
 
 import ListItem from './ListItem';
 
 const noteList = props=>{
-   const outputNote = props.notes.map((note, i) => (
-     <ListItem 
-       key={i} 
-       notesItem={note} 
-       onDeleteButtonPress = {props.onPress}
-     />
-   ));
+
+  // alert(JSON.stringify(props.notes))
     return (
-        <View style={styles.outputContainer}>      
-           {outputNote}
-        </View>
+  
+   <FlatList 
+      style={styles.outputContainer}
+      data={props.notes}
+      renderItem={({item}) =>
+        <ListItem 
+          notesItem={item.value} 
+          onPress = {()=>props.onDeleteButtonPress(item.key)}
+        />
+       } 
+    />
+   
+    
+    
         )
       
 }
 const styles = StyleSheet.create({
   outputContainer: {
     width: "90%",
-    backgroundColor: "pink",
-    // flexDirection: "row",
-    // justifyContent: "space-between",
-    // alignItems: "center",
+    backgroundColor: "lightblue",
     margin: 5
   }
 });
