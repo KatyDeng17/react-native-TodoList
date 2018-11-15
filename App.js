@@ -48,14 +48,41 @@ export default class App extends Component {
 
     })
   };
-  handleNoteOnPress = note =>{
-    alert(note)
+  handleDeleteButtonInModal=()=>{
+      this.setState(prevState=>{
+      return{
+        notes: prevState.notes.filter(note => {
+          return note.key !== prevState.selectedNote.key;
+        }),
+        selectedNote: null
+      }
+
+    })
   }
+  handleNoteOnPress = note =>{
+    // alert(note)
+    this.setState(prevState=>{
+      return{
+        selectedNote: prevState.notes.find(itemInNotes =>{
+          return itemInNotes.key === note;
+        })
+      }
+                //  alert(this.state.selectedNote);
+
+    })
+  }
+
   render() {
   
   
     return <View style={styles.container}>
-        <NotesDetail note /> 
+        <NotesDetail 
+           selectedNote={this.state.selectedNote} 
+           onCloseModal={()=>{
+             this.setState({selectedNote:null})
+           }}
+           onDeleteItem = {this.handleDeleteButtonInModal} 
+           /> 
         <NotesInput onPressAddNote={this.handleAddNote} />
         <NotesList 
             notes={this.state.notes} 
