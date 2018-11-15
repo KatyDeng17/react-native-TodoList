@@ -11,10 +11,12 @@ const noteList = props=>{
    <FlatList 
       style={styles.outputContainer}
       data={props.notes}
-      renderItem={({item}) =>
+      renderItem={({item, index}) =>
         <ListItem 
           notesItem={item.value} 
           onPress = {()=>props.onDeleteButtonPress(item.key)}
+          noteOnPress ={()=>props.noteOnPress(item.key)}
+
         />
        } 
     />

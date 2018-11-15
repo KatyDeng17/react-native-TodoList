@@ -1,12 +1,16 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button} from 'react-native'
+import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 const listItem = props => (
+
   <View style={styles.listItemContainer}>
-    <View style={styles.note}>
-      <Text>{props.notesItem}</Text>
-    </View>
+    <TouchableOpacity style={styles.note} onPress = {props.noteOnPress}>
+      <View >
+        <Text>{props.notesItem}</Text>
+      </View>
+    </TouchableOpacity>
     <Button title="Delete" onPress={props.onPress} />
   </View>
+
 ); 
 
 const styles = StyleSheet.create({
@@ -17,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: "pink"
   },
   note: {
-    width: "70%",
+    width: "75%",
     padding: 10,
     margin: 5,
     backgroundColor: "#eee"
