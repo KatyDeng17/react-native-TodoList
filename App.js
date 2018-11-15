@@ -20,31 +20,40 @@ export default class App extends Component {
  
     this.setState(prevState => {
       return { 
-        notes: prevState.notes.concat(userInputNote) 
+        notes: prevState.notes.concat({key:userInputNote+Math.random(),value:userInputNote}) 
       };
     });
   };
-  handleDeleteButton = i => {
-    let newNotes = this.state.notes;
-    newNotes.splice(i, 1);
-    this.setState({
-      notes: newNotes
-    });
+  handleDeleteButton = key => {
+    // let newNotes = this.state.notes;
+    // newNotes.splice(i, 1);
+    // this.setState({
+    //   notes: newNotes
+    // });
+    this.setState(prevState=>{
+      alert(key)
+      return{
+        notes: prevState.notes.filter(note => {
+          return note.key !== key;
+        })
+      }
+
+    })
   };
   render() {
   
   
     return <View style={styles.container}>
         <NotesInput onPressAddNote={this.handleAddNote} />
-        <NotesList notes={this.state.notes} onPress={this.handleDeleteButton} />
+        <NotesList notes={this.state.notes} onDeleteButtonPress={this.handleDeleteButton} />
       </View>;
+
     
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF",

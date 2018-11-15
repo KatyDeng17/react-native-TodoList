@@ -1,19 +1,28 @@
 import React from 'react'
 import {View, Text, StyleSheet, Button} from 'react-native'
-const listItem = (props)=>
- <View style = {styles.listItem}>  
-    <Text>{props.notesItem}</Text> 
-    <Button title='Delete' onPress={props.onDeleteButtonPress} />
- </View> 
+const listItem = props => (
+  <View style={styles.listItemContainer}>
+    <View style={styles.note}>
+      <Text>{props.notesItem}</Text>
+    </View>
+    <Button title="Delete" onPress={props.onPress} />
+  </View>
+); 
 
 const styles = StyleSheet.create({
-  listItem: {
+  listItemContainer: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
     marginBottom: 5,
+    backgroundColor: "pink"
+  },
+  note: {
+    width: "70%",
+    padding: 10,
+    margin: 5,
     backgroundColor: "#eee"
   }
 });
 export default listItem
+
+
